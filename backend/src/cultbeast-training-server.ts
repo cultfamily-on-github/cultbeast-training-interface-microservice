@@ -1,7 +1,7 @@
 // import { PersistenceService } from "../helpers/persistence-service.ts"
 import { opine, serveStatic } from "https://deno.land/x/opine@2.3.3/mod.ts";
 import { PersistenceService } from "./persistence-service.ts";
-import { ILearningOpportunity } from "./data-model.ts";
+import { ILearningOpportunity, IMessage } from "./data-model.ts";
 
 
 export class AdminServer {
@@ -52,10 +52,16 @@ export class AdminServer {
         // http://localhost:8045/api/v1/getLearningOpportunities
         // http://cultbeast.org/api/v1/getLearningOpportunities
         this.app.get("/api/v1/getLearningOpportunities", async (req: any, res: any) => {
-            // console.log(`reading learning opportunities`)
             const learningOpportunities: ILearningOpportunity[] = await this.persistenceService.readLearningOpportunities()
             res.send(learningOpportunities)
             // res.send([])
+        });
+
+        // http://localhost:8045/api/v1/getReceivedMessages
+        // http://cultbeast.org/api/v1/getReceivedMessages
+        this.app.get("/api/v1/getReceivedMessages", async (req: any, res: any) => {
+            const receivedMessages: IMessage[] = await this.persistenceService.readReceivedMessages()
+            res.send(receivedMessages)
         });
 
 

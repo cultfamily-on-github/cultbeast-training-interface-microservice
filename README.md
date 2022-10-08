@@ -40,5 +40,4 @@ pm2 start backend/src/cultbeast-training-server.ts --interpreter="deno" --interp
 Please contribute via [pull request](https://www.youtube.com/watch?v=8lGpZkjnkt4). 
 
 ## Learnings & Remarks Along This Journey
-
-
+Ensure the telegram bot is not running when applying certbot.

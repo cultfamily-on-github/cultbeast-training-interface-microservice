@@ -20,6 +20,7 @@ export class PersistenceService {
 
     private pathToOperationalData
     private pathToLearningOpportunities
+    private pathToReceivedMessages
 
     private constructor() {
         this.pathToAssets = `${Deno.cwd()}/docs`;
@@ -30,6 +31,7 @@ export class PersistenceService {
 
         this.pathToOperationalData = `${Deno.cwd()}/../decentralized-open-source-ai-supporting-the-cultdao/operational-data`;
         this.pathToLearningOpportunities = `${this.pathToOperationalData}/learning-opportunities.json`;
+        this.pathToReceivedMessages = `${this.pathToOperationalData}/received-messages.json`;
     }
 
     public async readLearningOpportunities(): Promise<ILearningOpportunity[]> {
@@ -41,4 +43,8 @@ export class PersistenceService {
         await Deno.writeTextFile(this.pathToLearningOpportunities, JSON.stringify(learningOpportunities))
     }
 
+    public async readReceivedMessages(): Promise<IMessage[]> {
+        const messages: IMessage[] = JSON.parse(await Deno.readTextFile(this.pathToReceivedMessages))
+        return messages
+    }
 }
