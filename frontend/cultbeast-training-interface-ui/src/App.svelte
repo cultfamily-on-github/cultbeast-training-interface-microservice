@@ -24,7 +24,9 @@
 
   const getDataInPlace = async () => {
     const urlToGetLearningOpportunities = `${backendBaseURL}/api/v1/getLearningOpportunities`;
-    console.log(`fetching learning opportunities from ${urlToGetLearningOpportunities}`);
+    console.log(
+      `fetching learning opportunities from ${urlToGetLearningOpportunities}`
+    );
     const lOResponse = await fetch(urlToGetLearningOpportunities);
     learningOpportunities = await lOResponse.json();
 
@@ -32,11 +34,11 @@
     console.log(`fetching received messages from ${urlToGetReceivedMessages}`);
     const rMresponse = await fetch(urlToGetReceivedMessages);
     receivedMessages = await rMresponse.json();
+    scrollToBottom("livechatdiv")
   };
 
   onMount(getDataInPlace);
 
-  
   const changeShowSuperVisedLearning = () => {
     showSuperVisedLearning = !showSuperVisedLearning;
     if (showMasterMode) {
@@ -47,6 +49,18 @@
       showMasterMode = false;
     }
   };
+
+  const scrollToBottom = (id) => {
+    const element = document.getElementById(id);
+    element.scrollTop = element.scrollHeight;
+}
+
+setInterval(() => {
+  // scrollToBottom("livechatdiv")
+  // scrollToBottom("livechatdiv")
+  getDataInPlace()
+}, 1000 * 5)
+
 </script>
 
 <Seo
@@ -59,24 +73,29 @@
     <h2>CULT Beast Training Camp</h2>
 
     <p><br /></p>
-    {#if lastMomentOfToday}
-      <a href="https://time.is/UTC" target="_blank" style="color: white;">
-        {lastMomentOfToday.split(" ")[0]} UTC</a
-      >
-    {/if}
+    Here you can observe messages which are sent to the
+    <a href="https://t.me/cultmagazine_bot" target="_blank"> CULT Beast</a>.
     <p><br /></p>
-    {#if currentGameOfTheDay}
-      <!-- {JSON.stringify(currentGameOfTheDay)} -->
-      <GameOfTheDayItem item={currentGameOfTheDay} />
-    {/if}
 
-    {#each receivedMessages as receivedMessage}
+    Please add question and answer pairs
+    <a
+      href="https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao/issues/new?assignees=octocat&labels=trainingdata%2Cfaq&template=q-and-a-pair.yaml&title=A+new+example+q+%26+a+pair+is+coming+to+train+the+CULT+Beast."
+      target="_blank"
+    >
+      here</a
+    >
+    to coach the
+    <a href="https://t.me/cultmagazine_bot" target="_blank"> CULT Beast</a>.
+
+    <div id="livechatdiv">
+      {#each receivedMessages as receivedMessage}
+      <p><br /></p>
       {receivedMessage.text}
-    {/each}
-    Under Construction
+      {/each}
+    </div>
     <!-- <Levels /> -->
 
-   <p><br /></p>
+    <p><br /></p>
 
     <button on:click={() => changeShowSuperVisedLearning()}>
       CULT Beast Learning Opportunities
@@ -101,4 +120,11 @@
 </main>
 
 <style>
+  a {
+    color: white;
+  }
+  #livechatdiv {
+    height: 50vH;
+    overflow-y: scroll;
+  }
 </style>
