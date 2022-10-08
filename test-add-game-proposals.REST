@@ -1,0 +1,8 @@
+POST http://localhost:8042/api/v1/addvoteongameproposal HTTP/1.1
+content-type: application/json
+
+{
+    "text": "Explain to your neighbor how to install metamask.io and how to buy 1000000 CULT on https://uniswap.org.",
+    "fromMasterKey": "michaelsdemomasterkey"
+}
+
