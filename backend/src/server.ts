@@ -63,23 +63,22 @@ export class SupervisedLearningServer {
 			void this.app.listen(this.port)
 			console.log(`server has started on http://localhost:${this.port} 🚀`);
 		} else {
-			const pathToCertificates = '/etc/letsencrypt/live/cultbeast.org';
 
-			console.log(`reading certificates from ${pathToCertificates}`);
+			console.log(`reading certificates from ${this.persistencService.pathToCerts}`);
 
-			Deno.readTextFile(`/etc/letsencrypt/live/cultbeast.org/fullchain.pem`)
+			Deno.readTextFile(this.persistencService.pathToCertFile)
 				.then((cert) => {
 					console.log(cert.length);
 				})
-			Deno.readTextFile(`/etc/letsencrypt/live/cultbeast.org/privkey.pem`)
+			Deno.readTextFile(this.persistencService.pathToKeyFile)
 				.then((key) => {
 					console.log(key.length);
 				})
 
 			const options = {
 				port: this.port,
-				certFile: '/etc/letsencrypt/live/cultbeast.org/fullchain.pem',
-				keyFile: '/etc/letsencrypt/live/cultbeast.org/privkey.pem'
+				certFile: this.persistencService.pathToCertFile,
+				keyFile: this.persistencService.pathToKeyFile
 			};
 
 			try {
