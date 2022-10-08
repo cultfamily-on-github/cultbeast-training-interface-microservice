@@ -34,7 +34,11 @@
     console.log(`fetching received messages from ${urlToGetReceivedMessages}`);
     const rMresponse = await fetch(urlToGetReceivedMessages);
     receivedMessages = await rMresponse.json();
-    scrollToBottom("livechatdiv")
+
+    setTimeout(() => {
+      scrollToBottom("livechatdiv");
+      scrollToBottom("learningopportunitiesdiv");
+    }, 1000);
   };
 
   onMount(getDataInPlace);
@@ -53,14 +57,11 @@
   const scrollToBottom = (id) => {
     const element = document.getElementById(id);
     element.scrollTop = element.scrollHeight;
-}
+  };
 
-setInterval(() => {
-  // scrollToBottom("livechatdiv")
-  // scrollToBottom("livechatdiv")
-  getDataInPlace()
-}, 1000 * 5)
-
+  setInterval(() => {
+    getDataInPlace();
+  }, 1000 * 5);
 </script>
 
 <Seo
@@ -89,8 +90,8 @@ setInterval(() => {
 
     <div id="livechatdiv">
       {#each receivedMessages as receivedMessage}
-      <p><br /></p>
-      {receivedMessage.text}
+        <p><br /></p>
+        {receivedMessage.text}
       {/each}
     </div>
     <!-- <Levels /> -->
@@ -102,12 +103,28 @@ setInterval(() => {
     </button>
     {#if showSuperVisedLearning}
       <p><br /></p>
-      Under Construction ...
-      {#each learningOpportunities as learningOpportunities}
-        <p><br /></p>
-        {JSON.stringify(learningOpportunities)}
-        <p><br /></p>
-      {/each}
+      The CULT Beast wants you to
+      <a
+        href="https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao/issues/new?assignees=octocat&labels=trainingdata%2Cfaq&template=q-and-a-pair.yaml&title=A+new+example+q+%26+a+pair+is+coming+to+train+the+CULT+Beast."
+        target="_blank"
+      >
+        give him more example answers</a
+      >
+      to the following inputs:
+      <p><br /></p>
+      <div id="learningopportunitiesdiv">
+        {#each learningOpportunities as learningOpportunities}
+          <p><br /></p>
+          Unknown Input:
+          <a
+            href="https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao/issues/new?assignees=octocat&labels=trainingdata%2Cfaq&template=q-and-a-pair.yaml&title=A+new+example+q+%26+a+pair+is+coming+to+train+the+CULT+Beast."
+            target="_blank"
+          >
+            {learningOpportunities.input}</a
+          >
+          <p><br /></p>
+        {/each}
+      </div>
       <p><br /></p>
     {/if}
 
@@ -124,7 +141,11 @@ setInterval(() => {
     color: white;
   }
   #livechatdiv {
-    height: 50vH;
+    height: 50vh;
+    overflow-y: scroll;
+  }
+  #learningopportunitiesdiv {
+    height: 50vh;
     overflow-y: scroll;
   }
 </style>
