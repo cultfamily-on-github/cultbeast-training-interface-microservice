@@ -1,4 +1,4 @@
-# CULT Beast Microservice
+# CULT Beast Training Interface Microservice
 
 [cultbeast.org](https://cultbeast.org) serves as a user interface to simplify exploration and training of the [CULT Beast](https://t.me/cultmagazine_bot) which is currently available via telegram and will probably be available also for discord, slack etc.
 
