@@ -17,6 +17,6 @@ apt-get install snapd
 sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo certbot certonly --standalone # follow the instructions given there
+sudo certbot certonly --standalone # follow the instructions given there // cultbeast.org www.cultbeast.org 
 
 # renewal details see ./renew-certs.sh file
