@@ -1,5 +1,5 @@
 // import { PersistenceService } from "../helpers/persistence-service.ts"
-import { opine, serveStatic } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import express from "npm:express";
 import { PersistenceService } from "./persistence-service.ts";
 import { ILearningOpportunity } from "./data-model.ts";
 
@@ -22,11 +22,11 @@ export class AdminServer {
     }
 
     private constructor(port: Number) {
-        this.app = opine();
+        this.app = express();
         this.port = port
         this.persistenceService = PersistenceService.getInstance()
 
-        this.app.use(serveStatic(`${Deno.cwd()}/docs`));
+        this.app.use(express.static(`${Deno.cwd()}/docs`));
 
         // this.sentimentClassifierService = SentimentClassifierService.getInstance()
     }
