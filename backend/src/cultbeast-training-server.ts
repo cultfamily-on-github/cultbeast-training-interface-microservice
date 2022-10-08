@@ -23,11 +23,11 @@ export class AdminServer {
 
     private constructor(port: Number) {
         this.app = opine();
-        this.app.use(opineCors())
         this.port = port
         this.persistenceService = PersistenceService.getInstance()
-
         this.app.use(serveStatic(`${Deno.cwd()}/docs`));
+        
+        this.app.use(opineCors())
 
         // this.sentimentClassifierService = SentimentClassifierService.getInstance()
     }
