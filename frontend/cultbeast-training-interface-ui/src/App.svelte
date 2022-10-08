@@ -11,8 +11,8 @@
   import { onMount } from "svelte";
   import { backendBaseURL } from "./stores";
 
-  let gameProposals = [];
   let learningOpportunities = [];
+  let receivedMessages = [];
   let currentGameOfTheDay;
   let lastMomentOfToday;
   let showDetails = false;
@@ -23,10 +23,15 @@
   let showPastGamesMode = false;
 
   const getDataInPlace = async () => {
-    const url = `${backendBaseURL}/api/v1/getLearningOpportunities`;
-    console.log(`fetching learning opportunities from ${url}`);
-    const response = await fetch(url);
-    learningOpportunities = await response.json();
+    const urlToGetLearningOpportunities = `${backendBaseURL}/api/v1/getLearningOpportunities`;
+    console.log(`fetching learning opportunities from ${urlToGetLearningOpportunities}`);
+    const lOResponse = await fetch(urlToGetLearningOpportunities);
+    learningOpportunities = await lOResponse.json();
+
+    const urlToGetReceivedMessages = `${backendBaseURL}/api/v1/getReceivedMessages`;
+    console.log(`fetching received messages from ${urlToGetReceivedMessages}`);
+    const rMresponse = await fetch(urlToGetReceivedMessages);
+    receivedMessages = await rMresponse.json();
   };
 
   onMount(getDataInPlace);
@@ -65,6 +70,9 @@
       <GameOfTheDayItem item={currentGameOfTheDay} />
     {/if}
 
+    {#each receivedMessages as receivedMessage}
+      {receivedMessage.text}
+    {/each}
     Under Construction
     <!-- <Levels /> -->
 

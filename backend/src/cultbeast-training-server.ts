@@ -1,8 +1,8 @@
 // import { PersistenceService } from "../helpers/persistence-service.ts"
-import { opine, serveStatic } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import { opine, serveStatic, cors } from "https://deno.land/x/opine@2.3.3/mod.ts";
 import { PersistenceService } from "./persistence-service.ts";
 import { ILearningOpportunity, IMessage } from "./data-model.ts";
-
+import { opineCors } from "https://deno.land/x/cors/mod.ts";
 
 export class AdminServer {
 
@@ -23,6 +23,7 @@ export class AdminServer {
 
     private constructor(port: Number) {
         this.app = opine();
+        this.app.use(opineCors())
         this.port = port
         this.persistenceService = PersistenceService.getInstance()
 
@@ -58,9 +59,12 @@ export class AdminServer {
         });
 
         // http://localhost:8045/api/v1/getReceivedMessages
-        // http://cultbeast.org/api/v1/getReceivedMessages
+        // https://cultbeast.org/api/v1/getReceivedMessages
         this.app.get("/api/v1/getReceivedMessages", async (req: any, res: any) => {
             const receivedMessages: IMessage[] = await this.persistenceService.readReceivedMessages()
+            for (const receivedMessage of receivedMessages) { // ask the community as soon as they have more insight if we should not store this in the first place - privacy vs. transparency with the option to personally help out on demand.
+                receivedMessage.userName = undefined 
+            }
             res.send(receivedMessages)
         });
 
