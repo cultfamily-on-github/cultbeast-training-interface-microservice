@@ -11,7 +11,6 @@ export class SupervisedLearningServer {
 
 	private app: any
 	private port: Number
-	private persistencService: any
 	private serverStarted = false
 	private persistenceService: PersistenceService
 
@@ -53,7 +52,7 @@ export class SupervisedLearningServer {
 		// http://cultbeast.org/api/v1/getLearningOpportunities
 		this.app.get("/api/v1/getLearningOpportunities", async (request: any, response: any) => {
 			console.log(`reading learning opportunities`)
-			const learningOpportunities: ILearningOpportunity[] = await this.persistencService.readLearningOpportunities()
+			const learningOpportunities: ILearningOpportunity[] = await this.persistenceService.readLearningOpportunities()
 
 			response.send(learningOpportunities)
 		});
@@ -64,21 +63,21 @@ export class SupervisedLearningServer {
 			console.log(`server has started on http://localhost:${this.port} 🚀`);
 		} else {
 
-			console.log(`reading certificates from ${this.persistencService.pathToCerts}`);
+			console.log(`reading certificates from ${this.persistenceService.pathToCerts}`);
 
-			Deno.readTextFile(this.persistencService.pathToCertFile)
+			Deno.readTextFile(this.persistenceService.pathToCertFile)
 				.then((cert) => {
 					console.log(cert.length);
 				})
-			Deno.readTextFile(this.persistencService.pathToKeyFile)
+			Deno.readTextFile(this.persistenceService.pathToKeyFile)
 				.then((key) => {
 					console.log(key.length);
 				})
 
 			const options = {
 				port: this.port,
-				certFile: this.persistencService.pathToCertFile,
-				keyFile: this.persistencService.pathToKeyFile
+				certFile: this.persistenceService.pathToCertFile,
+				keyFile: this.persistenceService.pathToKeyFile
 			};
 
 			try {
