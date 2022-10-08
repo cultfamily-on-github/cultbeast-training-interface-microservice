@@ -12,6 +12,8 @@ export class PersistenceService {
         return PersistenceService.instance
     }
 
+    public readonly pathToIndexHTML = `${Deno.cwd()}/docs`;
+    public readonly pathToAssets = `${this.pathToIndexHTML}/assets`;
     private pathToOperationalData = `${Deno.cwd()}/operational-data`;
     private pathToSubscribers = `${this.pathToOperationalData}/subscribers.json`;
     private pathToReceivedMessages = `${this.pathToOperationalData}/received-messages.json`;
