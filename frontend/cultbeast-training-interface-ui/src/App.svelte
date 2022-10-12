@@ -12,14 +12,15 @@
   let showProposalsMode = false;
   let showPastGamesMode = false;
 
+  let lOLengthBefore = 0;
+  let rMBefore = 0;
+  
   const getDataInPlace = async () => {
     const urlToGetLearningOpportunities = `${backendBaseURL}/api/v1/getLearningOpportunities`;
     console.log(
       `fetching learning opportunities from ${urlToGetLearningOpportunities}`
     );
 
-    let lOLengthBefore = 0;
-    let rMBefore = 0;
 
     const lOResponse = await fetch(urlToGetLearningOpportunities);
     learningOpportunities = await lOResponse.json();
@@ -136,7 +137,7 @@
     {/if}
 
     <p><br /></p>
-    
+
     <a href="https://cultmagazine.org/" target="_blank">
       <button> Explore Architectures of Freedom </button>
     </a>
