@@ -1,20 +1,10 @@
 <script>
-  import Levels from "./components/texts/Levels.svelte";
-  import Philosophy from "./components/texts/Philosophy.svelte";
-  import HowItWorks from "./components/texts/HowItWorks.svelte";
-  import MasterModeForm from "./components/MasterModeForm.svelte";
-  import GameOfTheDayItem from "./components/GameOfTheDayItem.svelte";
-  import GameProposalItem from "./components/GameProposalItem.svelte";
-  import GameOfThePastItem from "./components/GameOfThePastItem.svelte";
   import Seo from "./Seo.svelte";
-  import { fade, scale } from "svelte/transition";
   import { onMount } from "svelte";
   import { backendBaseURL } from "./stores";
 
   let learningOpportunities = [];
   let receivedMessages = [];
-  let currentGameOfTheDay;
-  let lastMomentOfToday;
   let showDetails = false;
   let showPhilosophy = false;
   let showMasterMode = false;
@@ -27,6 +17,10 @@
     console.log(
       `fetching learning opportunities from ${urlToGetLearningOpportunities}`
     );
+
+    let lOLengthBefore = 0;
+    let rMBefore = 0;
+
     const lOResponse = await fetch(urlToGetLearningOpportunities);
     learningOpportunities = await lOResponse.json();
 
@@ -36,9 +30,18 @@
     receivedMessages = await rMresponse.json();
 
     setTimeout(() => {
-      scrollToBottom("livechatdiv");
-      scrollToBottom("learningopportunitiesdiv");
-    }, 1000);
+      if (rMBefore < receivedMessages.length) {
+        scrollToBottom("livechatdiv");
+        rMBefore = receivedMessages.length;
+      }
+      if (
+        showSuperVisedLearning &&
+        lOLengthBefore < learningOpportunities.length
+      ) {
+        scrollToBottom("learningopportunitiesdiv");
+        lOLengthBefore = learningOpportunities.length;
+      }
+    }, 1000 * 2);
   };
 
   onMount(getDataInPlace);
@@ -102,7 +105,7 @@
       CULT Beast Learning Opportunities
     </button>
     {#if showSuperVisedLearning}
-      <p><br /></p>
+      <p><br /> <br></p>
       The CULT Beast wants you to
       <a
         href="https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao/issues/new?assignees=octocat&labels=trainingdata%2Cfaq&template=q-and-a-pair.yaml&title=A+new+example+q+%26+a+pair+is+coming+to+train+the+CULT+Beast."
@@ -111,7 +114,6 @@
         give him more example answers</a
       >
       to the following inputs:
-      <p><br /></p>
       <div id="learningopportunitiesdiv">
         {#each learningOpportunities as learningOpportunities}
           <p><br /></p>
@@ -143,9 +145,29 @@
   #livechatdiv {
     height: 50vh;
     overflow-y: scroll;
+    background-color: white;
+    color: black;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
   }
   #learningopportunitiesdiv {
     height: 50vh;
     overflow-y: scroll;
+    background-color: white;
+    color: black;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
   }
+
+  ::-webkit-scrollbar { 
+    display: none; 
+}
 </style>
