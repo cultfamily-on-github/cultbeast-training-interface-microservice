@@ -78,18 +78,23 @@
 
     <p><br /></p>
     Here you can observe messages which are sent to the
-    <a href="https://t.me/cultmagazine_bot" target="_blank"> CULT Beast</a>.
+    <a href="https://t.me/cultmagazine_bot" target="_blank" class="whiteLink">
+      CULT Beast</a
+    >.
     <p><br /></p>
 
     Please add question and answer pairs
     <a
       href="https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao/issues/new?assignees=octocat&labels=trainingdata%2Cfaq&template=q-and-a-pair.yaml&title=A+new+example+q+%26+a+pair+is+coming+to+train+the+CULT+Beast."
       target="_blank"
+      class="whiteLink"
     >
       here</a
     >
     to coach the
-    <a href="https://t.me/cultmagazine_bot" target="_blank"> CULT Beast</a>.
+    <a href="https://t.me/cultmagazine_bot" target="_blank" class="whiteLink">
+      CULT Beast</a
+    >.
 
     <div id="livechatdiv">
       {#each receivedMessages as receivedMessage}
@@ -105,11 +110,12 @@
       CULT Beast Learning Opportunities
     </button>
     {#if showSuperVisedLearning}
-      <p><br /> <br></p>
+      <p><br /> <br /></p>
       The CULT Beast wants you to
       <a
         href="https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao/issues/new?assignees=octocat&labels=trainingdata%2Cfaq&template=q-and-a-pair.yaml&title=A+new+example+q+%26+a+pair+is+coming+to+train+the+CULT+Beast."
         target="_blank"
+        class="whiteLink"
       >
         give him more example answers</a
       >
@@ -127,11 +133,10 @@
           <p><br /></p>
         {/each}
       </div>
-      <p><br /></p>
     {/if}
 
     <p><br /></p>
-
+    
     <a href="https://cultmagazine.org/" target="_blank">
       <button> Explore Architectures of Freedom </button>
     </a>
@@ -139,7 +144,7 @@
 </main>
 
 <style>
-  a {
+  .whiteLink {
     color: white;
   }
   #livechatdiv {
@@ -167,7 +172,7 @@
     -moz-border-radius: 15px;
   }
 
-  ::-webkit-scrollbar { 
-    display: none; 
-}
+  ::-webkit-scrollbar {
+    display: none;
+  }
 </style>
