@@ -142,10 +142,12 @@
     </div>
 
     <div class="input-group">
+      <!-- svelte-ignore a11y-autofocus -->
       <input
         type="text"
         bind:value={inputText}
         placeholder="... start typing your message here ..."
+        autofocus
       />
     </div>
     <br />
@@ -193,18 +195,18 @@
 
     <p><br /></p>
 
-    <a href="https://cultkamasutra.eth.limo" target="_blank">
-      <button> CULT Kamasutra </button>
-    </a>
-    <p><br /></p>
-
     <a href="https://www.cultdao.art" target="_blank">
       <button> CULTDAO Art </button>
     </a>
     <p><br /></p>
-
+    
     <a href="https://onlycultfans.org" target="_blank">
       <button> Only Fans for CULT </button>
+    </a>
+    <p><br /></p>
+    
+    <a href="https://cultkamasutra.eth.limo" target="_blank">
+      <button> CULT Kamasutra </button>
     </a>
     <p><br /></p>
 
