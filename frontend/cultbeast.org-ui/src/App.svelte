@@ -4,7 +4,7 @@
   import { backendBaseURL } from "./stores";
 
   let learningOpportunities = [];
-  let receivedMessages = [];
+  let messages = [];
   let showDetails = false;
   let showPhilosophy = false;
   let showMasterMode = false;
@@ -26,15 +26,15 @@
     const lOResponse = await fetch(urlToGetLearningOpportunities);
     learningOpportunities = await lOResponse.json();
 
-    const urlToGetReceivedMessages = `${backendBaseURL}/api/v1/getReceivedMessages`;
-    console.log(`fetching received messages from ${urlToGetReceivedMessages}`);
-    const rMresponse = await fetch(urlToGetReceivedMessages);
-    receivedMessages = await rMresponse.json();
+    const urlToGetMessages = `${backendBaseURL}/api/v1/getMessages`;
+    console.log(`fetching received messages from ${urlToGetMessages}`);
+    const rMresponse = await fetch(urlToGetMessages);
+    messages = await rMresponse.json();
 
     setTimeout(() => {
-      if (rMBefore < receivedMessages.length) {
+      if (rMBefore < messages.length) {
         scrollToBottom("livechatdiv");
-        rMBefore = receivedMessages.length;
+        rMBefore = messages.length;
       }
       if (
         showSuperVisedLearning &&
@@ -130,9 +130,9 @@
     >.
 
     <div id="livechatdiv">
-      {#each receivedMessages as receivedMessage}
+      {#each messages as message}
         <p><br /></p>
-        {receivedMessage.text}
+        {message.text}
       {/each}
     </div>
     <!-- <Levels /> -->

@@ -58,14 +58,14 @@ export class AdminServer {
             // res.send([])
         });
 
-        // http://localhost:8045/api/v1/getReceivedMessages
-        // https://cultbeast.org/api/v1/getReceivedMessages
-        this.app.get("/api/v1/getReceivedMessages", async (req: any, res: any) => {
-            const receivedMessages: IMessage[] = await this.persistenceService.readReceivedMessages()
-            for (const receivedMessage of receivedMessages) { // ask the community as soon as they have more insight if we should not store this in the first place - privacy vs. transparency with the option to personally help out on demand.
-                receivedMessage.userName = undefined
+        // http://localhost:8045/api/v1/getMessages
+        // https://cultbeast.org/api/v1/getMessages
+        this.app.get("/api/v1/getMessages", async (req: any, res: any) => {
+            const messages: IMessage[] = await this.persistenceService.readMessages()
+            for (const message of messages) { // ask the community as soon as they have more insight if we should not store this in the first place - privacy vs. transparency with the option to personally help out on demand.
+                message.userName = undefined
             }
-            res.send(receivedMessages)
+            res.send(messages)
         });
 
         if (this.port.toString().indexOf("443") === -1) {
