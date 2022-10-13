@@ -27,12 +27,16 @@ You might check the [Deno Main Repo](https://github.com/denoland/deno) and join 
 To start the backend server locally you might execute:  
 
 ```sh
-deno run --allow-read --allow-net --allow-write --allow-env --unstable backend/src/cultbeast-training-server.ts 8045
+
+./start-cultbeast.org-server.sh locally
+
 ```
 
 ### Start in Production
 ```sh
-pm2 start backend/src/cultbeast-training-server.ts --interpreter="deno" --interpreter-args="run --allow-read --allow-write --allow-env --allow-net --unstable" -- 443
+
+./start-cultbeast.org-server.sh production mode
+
 ```
 
 

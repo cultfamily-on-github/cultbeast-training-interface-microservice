@@ -11,16 +11,17 @@
   let showSuperVisedLearning = false;
   let showProposalsMode = false;
   let showPastGamesMode = false;
-
+  let intervalId = 0;
   let lOLengthBefore = 0;
   let rMBefore = 0;
-  
+
+  let inputText = "";
+
   const getDataInPlace = async () => {
     const urlToGetLearningOpportunities = `${backendBaseURL}/api/v1/getLearningOpportunities`;
     console.log(
       `fetching learning opportunities from ${urlToGetLearningOpportunities}`
     );
-
 
     const lOResponse = await fetch(urlToGetLearningOpportunities);
     learningOpportunities = await lOResponse.json();
@@ -47,6 +48,36 @@
 
   onMount(getDataInPlace);
 
+  const clickSend = async () => {
+    try {
+      const response = await fetch(`${backendBaseURL}/api/v1/addgameproposal`, {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          text,
+          fromMasterKey: masterKey,
+        }),
+      });
+
+      const result = await response.json()
+
+      message = result.message
+
+      text = "";
+      masterKey = "";
+
+      // const dispatch = createEventDispatcher()
+      // dispatch('reload-of-gameproposals-recommended')
+
+    } catch (error) {
+      alert(`an error occurred: ${error.message}`);
+    }
+  }
+
   const changeShowSuperVisedLearning = () => {
     showSuperVisedLearning = !showSuperVisedLearning;
     if (showMasterMode) {
@@ -63,9 +94,11 @@
     element.scrollTop = element.scrollHeight;
   };
 
-  setInterval(() => {
-    getDataInPlace();
-  }, 1000 * 7);
+  if (intervalId === 0) {
+    intervalId = setInterval(() => {
+      getDataInPlace();
+    }, 1000 * 7);
+  }
 </script>
 
 <Seo
@@ -105,6 +138,20 @@
     </div>
     <!-- <Levels /> -->
 
+    <div class="input-group">
+      <input
+        type="text"
+        bind:value={inputText}
+        placeholder="... start typing your message here ..."
+      />
+    </div>
+    <br>
+    {#if inputText !== ""}
+      
+    <button on:click={() => clickSend()}> Send </button>
+    <p><br /></p>
+    {/if}
+
     <p><br /></p>
 
     <button on:click={() => changeShowSuperVisedLearning()}>
@@ -138,6 +185,12 @@
 
     <p><br /></p>
 
+    <a href="https://cultplayground.org" target="_blank">
+      <button> CULT Game Of The Day </button>
+    </a>
+
+    <p><br /></p>
+
     <a href="https://cultmagazine.org/" target="_blank">
       <button> Explore Architectures of Freedom </button>
     </a>
@@ -145,6 +198,13 @@
 </main>
 
 <style>
+  /* .sendButton {
+    width: 30%;
+    height: 5vh;
+    font-size: 22px;
+    margin-left: 1vw;
+  } */
+
   .whiteLink {
     color: white;
   }
