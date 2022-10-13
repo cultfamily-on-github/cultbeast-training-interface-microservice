@@ -1,5 +1,5 @@
 // import { PersistenceService } from "../helpers/persistence-service.ts"
-import { opine, serveStatic, cors } from "https://deno.land/x/opine@2.3.3/mod.ts";
+import { opine, serveStatic } from "https://deno.land/x/opine@2.3.3/mod.ts";
 import { PersistenceService } from "./persistence-service.ts";
 import { ILearningOpportunity, IMessage } from "./data-model.ts";
 import { opineCors } from "https://deno.land/x/cors/mod.ts";

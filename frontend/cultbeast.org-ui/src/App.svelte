@@ -49,34 +49,33 @@
   onMount(getDataInPlace);
 
   const clickSend = async () => {
+    // const cultBotServerURL = `https://cultbeast.org:11443/api/v1/addMessage`
+    const cultBotServerURL = `https://localhost:8049/api/v1/addMessage`
     try {
-      const response = await fetch(`${backendBaseURL}/api/v1/addgameproposal`, {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(
+        cultBotServerURL,
+        {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({
-          text,
-          fromMasterKey: masterKey,
-        }),
-      });
+          body: JSON.stringify({
+            text: inputText
+          }),
+        }
+      );
 
-      const result = await response.json()
+      const result = await response.json();
 
-      message = result.message
-
-      text = "";
-      masterKey = "";
-
+      alert(JSON.stringify(result));
       // const dispatch = createEventDispatcher()
       // dispatch('reload-of-gameproposals-recommended')
-
     } catch (error) {
       alert(`an error occurred: ${error.message}`);
     }
-  }
+  };
 
   const changeShowSuperVisedLearning = () => {
     showSuperVisedLearning = !showSuperVisedLearning;
@@ -145,11 +144,10 @@
         placeholder="... start typing your message here ..."
       />
     </div>
-    <br>
+    <br />
     {#if inputText !== ""}
-      
-    <button on:click={() => clickSend()}> Send </button>
-    <p><br /></p>
+      <button on:click={() => clickSend()}> Send </button>
+      <p><br /></p>
     {/if}
 
     <p><br /></p>
