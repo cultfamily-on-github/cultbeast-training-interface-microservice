@@ -49,8 +49,8 @@
   onMount(getDataInPlace);
 
   const clickSend = async () => {
-    // const cultBotServerURL = `https://cultbeast.org:11443/api/v1/addMessage`
-    const cultBotServerURL = `https://localhost:8049/api/v1/addMessage`
+    const cultBotServerURL = `https://cultbeast.org:11443/api/v1/addMessage`
+    // const cultBotServerURL = `https://localhost:8049/api/v1/addMessage`
     try {
       const response = await fetch(
         cultBotServerURL,
@@ -132,10 +132,9 @@
     <div id="livechatdiv">
       {#each messages as message}
         <p><br /></p>
-        {message.text}
+        {message.userName}: {message.text}
       {/each}
     </div>
-    <!-- <Levels /> -->
 
     <div class="input-group">
       <input

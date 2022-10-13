@@ -63,7 +63,11 @@ export class AdminServer {
         this.app.get("/api/v1/getMessages", async (req: any, res: any) => {
             const messages: IMessage[] = await this.persistenceService.readMessages()
             for (const message of messages) { // ask the community as soon as they have more insight if we should not store this in the first place - privacy vs. transparency with the option to personally help out on demand.
-                message.userName = undefined
+                if (message.userName === "cultmagazine_bot") {
+                    // let it be https://www.youtube.com/watch?v=hlhN0PSOI9g
+                } else {
+                    message.userName = "teh many"
+                }
             }
             res.send(messages)
         });
