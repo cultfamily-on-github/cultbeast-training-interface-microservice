@@ -137,7 +137,7 @@
           {#if message.userName === "cultmagazine_bot"}
             teh cult beast: <br />
           {:else}
-            teh many: <br />
+            one of teh many: <br />
           {/if}
         </b>
         <!-- {message.text} -->
