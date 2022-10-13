@@ -70,7 +70,9 @@
         }),
       });
 
-      const result = await response.json();
+      // const result = await response.json();
+      getDataInPlace()
+      inputText = ""
     } catch (error) {
       alert(`an error occurred: ${error.message}`);
     }
