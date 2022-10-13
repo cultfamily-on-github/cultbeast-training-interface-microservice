@@ -71,8 +71,8 @@
       });
 
       // const result = await response.json();
-      getDataInPlace()
-      inputText = ""
+      getDataInPlace();
+      inputText = "";
     } catch (error) {
       alert(`an error occurred: ${error.message}`);
     }
@@ -134,7 +134,11 @@
       {#each messages as message}
         <p><br /></p>
         <b>
-          {message.userName}: <br />
+          {#if message.userName === "cultmagazine_bot"}
+            teh cult beast: <br />
+          {:else}
+            teh many: <br />
+          {/if}
         </b>
         <!-- {message.text} -->
         {@html replaceContentToShowClickableLinks(message.text)}
@@ -199,12 +203,12 @@
       <button> CULTDAO Art </button>
     </a>
     <p><br /></p>
-    
+
     <a href="https://onlycultfans.org" target="_blank">
       <button> Only Fans for CULT </button>
     </a>
     <p><br /></p>
-    
+
     <a href="https://cultkamasutra.eth.limo" target="_blank">
       <button> CULT Kamasutra </button>
     </a>
@@ -214,7 +218,6 @@
       <button> Explore Architectures of Freedom </button>
     </a>
     <p><br /></p>
-
   </div>
 </main>
 
