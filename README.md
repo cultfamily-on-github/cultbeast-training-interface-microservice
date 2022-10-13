@@ -1,11 +1,11 @@
 # CULT Beast Training Interface Microservice
+The [cultbeast.org](https://cultbeast.org) can be seen as an example client of the [decentralized open source ai supporting the cultdao](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao). Another example client (the first) is the [CULT Beast Telegram Bot](https://t.me/cultmagazine_bot). 
 
-[cultbeast.org](https://cultbeast.org) serves as a user interface to simplify exploration and training of the [CULT Beast](https://t.me/cultmagazine_bot) which is currently available via telegram and will probably be available also for discord, slack etc.
+Those two example clients might inspire and educate people on how to integrate, leverage, control and optimize the [CULT AI](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao) in any chat program they like - e.g. discord, slack etc. 
 
-The core features of the [CULT Beast](https://t.me/cultmagazine_bot) itself can be found [here](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao).
+[cultbeast.org](https://cultbeast.org) also serves as a user interface to simplify the exploration and the training of the [CULT AI](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao).
 
-
-In order to strengthen resilience, scalability and technological freedom for contributors, we establish a microservices architecture. 
+In order to strengthen resilience, scalability and technological freedom for contributors, we foster the emergence of a microservices architecture. 
 
 ## Status
 First Drafts & Idea Collection
