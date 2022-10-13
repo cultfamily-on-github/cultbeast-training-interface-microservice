@@ -1,0 +1,8 @@
+POST https://cultbeast.org:11443/api/v1/addMessage HTTP/1.1
+# POST http://localhost:8049/api/v1/addMessage HTTP/1.1
+content-type: application/json
+
+{
+    "text": "das ist eine geile nachricht",
+}
+

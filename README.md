@@ -1,9 +1,11 @@
 # CULT Beast Training Interface Microservice
-The [cultbeast.org](https://cultbeast.org) can be seen as an example client of the [decentralized open source ai supporting the cultdao](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao). Another example client (the first) is the [CULT Beast Telegram Bot](https://t.me/cultmagazine_bot). 
+The [cultbeast.org Chat Program](https://cultbeast.org) and the [CULT Beast Telegram Bot](https://t.me/cultmagazine_bot) can be seen as example clients of the [decentralized open source ai supporting the cultdao](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao). 
 
-Those two example clients might inspire and educate people on how to integrate, leverage, control and optimize the [CULT AI](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao) in any chat program they like - e.g. discord, slack etc. 
+Such example clients might inspire and educate people on how to integrate, leverage, control and optimize the [CULT AI](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao) in any chat program they like - e.g. discord, slack etc. 
 
 [cultbeast.org](https://cultbeast.org) also serves as a user interface to simplify the exploration and the training of the [CULT AI](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao).
+
+The main goal of this endeavor is to ensure that people can invest their time into more valuable things than answering repetitive questions. [CULT AI](https://github.com/cultfamily-on-github/decentralized-open-source-ai-supporting-the-cultdao) clients like the [cultbeast.org Chat Program](https://cultbeast.org) and the [CULT Beast Telegram Bot](https://t.me/cultmagazine_bot) can do so 24/7   
 
 In order to strengthen resilience, scalability and technological freedom for contributors, we foster the emergence of a microservices architecture. 
 
@@ -35,7 +37,7 @@ To start the backend server locally you might execute:
 ### Start in Production
 ```sh
 
-./start-cultbeast.org-server.sh production mode
+./start-cultbeast.org-server.sh productionmode
 
 ```
 

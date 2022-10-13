@@ -26,7 +26,7 @@ export class AdminServer {
         this.port = port
         this.persistenceService = PersistenceService.getInstance()
         this.app.use(serveStatic(`${Deno.cwd()}/docs`));
-        
+
         this.app.use(opineCors())
 
         // this.sentimentClassifierService = SentimentClassifierService.getInstance()
@@ -63,11 +63,10 @@ export class AdminServer {
         this.app.get("/api/v1/getReceivedMessages", async (req: any, res: any) => {
             const receivedMessages: IMessage[] = await this.persistenceService.readReceivedMessages()
             for (const receivedMessage of receivedMessages) { // ask the community as soon as they have more insight if we should not store this in the first place - privacy vs. transparency with the option to personally help out on demand.
-                receivedMessage.userName = undefined 
+                receivedMessage.userName = undefined
             }
             res.send(receivedMessages)
         });
-
 
         if (this.port.toString().indexOf("443") === -1) {
 
