@@ -2,6 +2,7 @@
   import Seo from "./Seo.svelte";
   import { onMount } from "svelte";
   import { backendBaseURL } from "./stores";
+  import { replaceContentToShowClickableLinks } from "./helpers";
 
   let learningOpportunities = [];
   let messages = [];
@@ -46,32 +47,30 @@
     }, 1000 * 2);
   };
 
-  onMount(getDataInPlace);
+  onMount(() => {
+    getDataInPlace();
+    // document.onkeypress = function (event) {
+    //   alert(event.keyCode);
+    // };
+  });
 
   const clickSend = async () => {
-    const cultBotServerURL = `https://cultbeast.org:11443/api/v1/addMessage`
+    const cultBotServerURL = `https://cultbeast.org:11443/api/v1/addMessage`;
     // const cultBotServerURL = `https://localhost:8049/api/v1/addMessage`
     try {
-      const response = await fetch(
-        cultBotServerURL,
-        {
-          method: "post",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
+      const response = await fetch(cultBotServerURL, {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify({
-            text: inputText
-          }),
-        }
-      );
+        body: JSON.stringify({
+          text: inputText,
+        }),
+      });
 
       const result = await response.json();
-
-      alert(JSON.stringify(result));
-      // const dispatch = createEventDispatcher()
-      // dispatch('reload-of-gameproposals-recommended')
     } catch (error) {
       alert(`an error occurred: ${error.message}`);
     }
@@ -132,7 +131,11 @@
     <div id="livechatdiv">
       {#each messages as message}
         <p><br /></p>
-        {message.userName}: {message.text}
+        <b>
+          {message.userName}: <br />
+        </b>
+        <!-- {message.text} -->
+        {@html replaceContentToShowClickableLinks(message.text)}
       {/each}
     </div>
 
